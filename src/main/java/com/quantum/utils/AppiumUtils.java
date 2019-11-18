@@ -243,6 +243,7 @@ public final class AppiumUtils {
     }
 
     // Used to get the integer for a month based on the string of the month
+    //TODO Replace this with Java-standard Date Utils
     private static int getMonthInt(String month) {
         int monthInt = 0;
         switch (month) {
@@ -395,11 +396,7 @@ public final class AppiumUtils {
                                                                                    .ignoring(TimeoutException.class);
 
         try {
-            waitElement = (MobileElement) fwait.until(new Function<RemoteWebDriver, WebElement>() {
-                public WebElement apply(RemoteWebDriver driver) {
-                    return driver.findElement(xpath);
-                }
-            });
+            waitElement = (MobileElement) fwait.until((Function<RemoteWebDriver, WebElement>) driver1 -> driver1.findElement(xpath));
         } catch (Exception e) {
         }
         return waitElement;
@@ -421,7 +418,7 @@ public final class AppiumUtils {
         ConsoleUtils.logWarningBlocks("ERROR: " + stepWarning);
         return String.format(
                 stepWarning + "\n\tSet following properties to use required driver:"
-                        + "\n\t\tperfecto.capabilities.driverClass=%s" + "\n\t\tdriver.name=perfectoDriver",
+                        + "\n\t\tsauce.capabilities.driverClass=%s" + "\n\t\tdriver.name=sauceDriver",
                 expectedClass.getName());
     }
 }

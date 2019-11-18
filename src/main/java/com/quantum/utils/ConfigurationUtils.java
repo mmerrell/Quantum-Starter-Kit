@@ -1,10 +1,5 @@
 package com.quantum.utils;
 
-//import com.perfectomobile.intellij.connector.ConnectorConfiguration;
-//import com.perfectomobile.intellij.connector.impl.client.ClientSideLocalFileSystemConnector;
-//import com.perfectomobile.intellij.connector.impl.client.ProcessOutputLogAdapter;
-//import com.perfectomobile.selenium.util.EclipseConnector;
-
 import com.qmetry.qaf.automation.core.ConfigurationManager;
 import com.qmetry.qaf.automation.core.TestBaseProvider;
 import com.qmetry.qaf.automation.util.PropertyUtil;
@@ -35,10 +30,9 @@ public class ConfigurationUtils
     public static void setMavenCapabilities()
     {
         String caps = getBaseBundle().getProperty("driver.mavenCapabilities") + "";
-        if (caps == null || caps.indexOf("=") < 0)
-        {
-            return;
-        }
+        if (!caps.contains("="))
+        { return; }
+
         DesiredCapabilities dcaps = new DesiredCapabilities();
         for (String capKeyValue : caps.split(","))
             if (capKeyValue != null && capKeyValue.length() > 3 && capKeyValue.indexOf("=") > 0)
@@ -60,45 +54,6 @@ public class ConfigurationUtils
         for (Map.Entry<String, ?> cap : caps.asMap().entrySet())
             addCapsJson.put(cap.getKey(), cap.getValue());
         properties.setProperty("driver.additional.capabilities", addCapsJson.toString());
-    }
-
-    public static String getExecutionIdCapability()
-    {
-        String pluginType = getBaseBundle().getPropertyValue("driver.pluginType");
-        try
-        {
-//            if ("intellij".equalsIgnoreCase(pluginType))
-//            {
-//                ClientSideLocalFileSystemConnector intellijConnector = new ClientSideLocalFileSystemConnector(
-//                        new ProcessOutputLogAdapter(System.err, System.out, System.out, System.out));
-//                ConnectorConfiguration connectorConfiguration = intellijConnector.getConnectorConfiguration();
-//                if (connectorConfiguration != null && connectorConfiguration.getHost() != null)
-//                {
-//                    return connectorConfiguration.getExecutionId();
-//                }
-//            }
-//            else if ("eclipse".equalsIgnoreCase(pluginType))
-//            {
-//                try
-//                {
-//                    EclipseConnector connector = new EclipseConnector();
-//                    if (connector.getHost() != null)
-//                    {
-//                        return connector.getExecutionId();
-//                    }
-//                }
-//                catch (Exception e)
-//                {
-//                    System.err.println("Eclipse Connector Plugin socket not found");
-//                }
-//            }
-
-        }
-        catch (Exception e)
-        {
-            System.err.println("Could not connect to device in " + pluginType + " IDE Perfecto Plugin");
-        }
-        return "";
     }
 
     /**
@@ -163,5 +118,4 @@ public class ConfigurationUtils
         getTestBundle().setProperty("driver.actualCapabilities", capMap);
         ConsoleUtils.setThreadName();
     }
-
 }

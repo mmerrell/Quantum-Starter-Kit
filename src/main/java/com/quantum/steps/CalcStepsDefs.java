@@ -55,14 +55,10 @@ public class CalcStepsDefs
     @When("add \"(.+)\" to \"(.+)\"")
     public void addInto(long l1, long l2)
     {
-
         DriverUtils.getAppiumDriver().findElementByAccessibilityId(String.valueOf(l1)).click();
         new QAFExtendedWebElement("btn.plus").click();
         DriverUtils.getAppiumDriver().findElementByAccessibilityId(String.valueOf(l2)).click();
         new QAFExtendedWebElement("btn.equal").click();
-        ;
-
-
     }
 
     @Then("result should be \"(.+)\"")

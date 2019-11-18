@@ -13,7 +13,6 @@ build/
 test-order-details/
 test-results/
 img/
-perfectoReports/
 .git/
 *.log
 /logs/

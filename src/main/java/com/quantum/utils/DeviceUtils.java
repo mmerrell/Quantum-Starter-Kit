@@ -1,7 +1,3 @@
-/**
- /**
- *
- */
 package com.quantum.utils;
 
 import com.qmetry.qaf.automation.ui.WebDriverTestBase;
@@ -19,13 +15,7 @@ import java.util.Map;
 
 import static com.qmetry.qaf.automation.core.ConfigurationManager.getBundle;
 
-//import com.perfectomobile.httpclient.device.DeviceParameter;
-//import com.perfectomobile.httpclient.device.DeviceResult;
-
 public class DeviceUtils {
-
-    private static final String REPOSITORY_KEY = "perfecto.repository.folder";
-
     public static QAFExtendedWebDriver getQAFDriver() {
         return new WebDriverTestBase().getDriver();
     }
@@ -40,7 +30,7 @@ public class DeviceUtils {
     }
 
     public static void installApp(String filePath, boolean shouldInstrument) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("file", filePath);
         if (shouldInstrument) {
             params.put("instrument", "instrument");
@@ -48,19 +38,8 @@ public class DeviceUtils {
         getQAFDriver().executeScript("mobile:application:install", params);
     }
 
-//    public void installAppOnDevice(DeviceResult device) {
-//        getBundle().setProperty("getQAFDriver().name", "appiumRemotegetQAFDriver()");
-//
-//        getBundle().setProperty("getQAFDriver().capabilities.deviceName",
-//                device.getResponseValue(DeviceParameter.DEVICE_ID));
-//
-//        installApp(REPOSITORY_KEY, getBundle().getString("app.instrumentation", "noinstrument"));
-//
-//        getQAFDriver().quit();
-//    }
-
     public void installApp(String repoKey, String instrument) {
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("file", getBundle().getString(repoKey, repoKey));
         params.put("instrument", getBundle().getString(instrument, instrument));
 
@@ -123,12 +102,12 @@ public class DeviceUtils {
     }
 
     public static void uninstallAllApps() {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         getQAFDriver().executeScript("mobile:application:reset", params);
     }
 
     public static String getAppInfo(String property) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("property", property);
         return (String) getQAFDriver().executeScript("mobile:application:info", params);
     }
@@ -146,7 +125,7 @@ public class DeviceUtils {
 
     public static void switchToContext(String context) {
         RemoteExecuteMethod executeMethod = new RemoteExecuteMethod(getQAFDriver());
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("name", context);
         executeMethod.execute(DriverCommand.SWITCH_TO_CONTEXT, params);
     }
@@ -164,7 +143,7 @@ public class DeviceUtils {
     private static String isImg(String img, Integer timeout) {
         String context = getCurrentContext();
         switchToContext("VISUAL");
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("content", img);
         params.put("measurement", "accurate");
         params.put("source", "primary");
@@ -230,7 +209,7 @@ public class DeviceUtils {
      *            the single or sequence of keys to click
      */
     public static void pressKey(String keySequence) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("keySequence", keySequence);
         getQAFDriver().executeScript("mobile:presskey", params);
     }
@@ -249,7 +228,7 @@ public class DeviceUtils {
      *            percentage(recommended).
      */
     public static void swipe(String start, String end) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("start", start);
         params.put("end", end);
 
@@ -286,7 +265,7 @@ public class DeviceUtils {
      *            percentage(recommended).
      */
     public static void touch(String point) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("location", point); // 50%,50%
 
         getQAFDriver().executeScript("mobile:touch:tap", params);
@@ -325,7 +304,7 @@ public class DeviceUtils {
      *
      */
     public static void hideKeyboard() {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("mode", "off");
 
         getQAFDriver().executeScript("mobile:keyboard:display", params);
@@ -342,7 +321,7 @@ public class DeviceUtils {
      */
     // TODO: need additional description.
     public static void rotateDevice(String restValue, String by) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put(by, restValue);
         getQAFDriver().executeScript("mobile:handset:rotate", params);
     }
@@ -350,7 +329,7 @@ public class DeviceUtils {
     // by = "address" or "coordinates"
     public static void setLocation(String location, String by) {
 
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put(by, location);
 
         getQAFDriver().executeScript("mobile:location:set", params);
@@ -368,38 +347,38 @@ public class DeviceUtils {
     }
 
     public static String getDeviceLocation() {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         return (String) getQAFDriver().executeScript("mobile:location:get", params);
     }
 
     public static void resetLocation() {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         getQAFDriver().executeScript("mobile:location:reset", params);
     }
 
     public static void goToHomeScreen() {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("target", "All");
 
         getQAFDriver().executeScript("mobile:handset:ready", params);
     }
 
     public static void lockDevice(int sec) {
-        Map<String, Integer> params = new HashMap<String, Integer>();
+        Map<String, Integer> params = new HashMap<>();
         params.put("timeout", sec);
 
         getQAFDriver().executeScript("mobile:screen:lock", params);
     }
 
     public static void setTimezone(String timezone) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("timezone", timezone);
 
         getQAFDriver().executeScript("mobile:timezone:set", params);
     }
 
     public static String getTimezone() {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
 
         return (String) getQAFDriver().executeScript("mobile:timezone:get", params);
     }
@@ -415,12 +394,12 @@ public class DeviceUtils {
     }
 
     public static void resetTimezone() {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         getQAFDriver().executeScript("mobile:timezone:reset", params);
     }
 
     public static void takeScreenshot(String repositoryPath, boolean shouldSave) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         if (shouldSave) {
             params.put("key", repositoryPath);
         }
@@ -483,7 +462,7 @@ public class DeviceUtils {
     }
 
     public static String getDeviceProperty(String property) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("property", property);
         return (String) getQAFDriver().executeScript("mobile:handset:info", params);
 

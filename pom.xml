@@ -69,11 +69,6 @@
     </build>
 
     <repositories>
-        <!--<repository>-->
-            <!--<id>perfectomobile</id>-->
-            <!--<name>Perfecto mobile</name>-->
-            <!--<url>https://repo1.perfectomobile.com/public/repositories/maven</url>-->
-        <!--</repository>-->
         <repository>
             <id>jai</id>
             <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases</url>
@@ -101,19 +96,16 @@
             <artifactId>cucumber-java</artifactId>
             <version>${cukes.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>6.1.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.qmetry/qaf -->
         <dependency>
             <groupId>com.qmetry</groupId>
             <artifactId>qaf</artifactId>
@@ -129,15 +121,5 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.7</version>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>com.quantum</groupId>-->
-        <!--<artifactId>quantum-support</artifactId>-->
-        <!--<version>${quantum.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>com.perfecto.reporting-sdk</groupId>-->
-        <!--<artifactId>reportium-testng</artifactId>-->
-        <!--<version>${reportium-sdk.version}</version>-->
-        <!--</dependency>-->
     </dependencies>
 </project>

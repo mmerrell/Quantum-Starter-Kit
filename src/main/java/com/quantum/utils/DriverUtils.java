@@ -49,26 +49,17 @@ public class DriverUtils {
     }
 
     public boolean isRunningAndroid() {
-        if (getOS().equalsIgnoreCase("android")) {
-            return true;
-        } else {
-            return false;
-        }
+        return getOS().equalsIgnoreCase("android");
     }
 
     public boolean isRunningIOS() {
-        if (getOS().equalsIgnoreCase("ios")) {
-            return true;
-        } else {
-            return false;
-        }
+        return getOS().equalsIgnoreCase("ios");
     }
 
     private String getOS() {
         Map<String, String> params = new HashMap<>();
         params.put("property", "os");
-        String properties = (String) DriverUtils.getDriver().executeScript("mobile:handset:info", params);
-        return properties;
+        return (String) DriverUtils.getDriver().executeScript("mobile:handset:info", params);
     }
 
     /**
@@ -86,11 +77,9 @@ public class DriverUtils {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        JavascriptExecutor js = (JavascriptExecutor) DeviceUtils.getQAFDriver();
-        // System.out.println("--Local Storage Clear Start--");
-        js.executeScript(String.format("window.localStorage.clear();"));
-        js.executeScript(String.format("window.sessionStorage.clear();"));
-        // System.out.println("--Local Storage Clear End--");
+        JavascriptExecutor js = DeviceUtils.getQAFDriver();
+        js.executeScript("window.localStorage.clear();");
+        js.executeScript("window.sessionStorage.clear();");
     }
 
 }

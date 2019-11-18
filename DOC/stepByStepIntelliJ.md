@@ -41,9 +41,9 @@ Goto resources > application.properties
  
  Update the following parameters:
  
-**remote.server**=https://[*YourCloud*].perfectomobile.com/nexperience/perfectomobile/wd/hub
-**perfecto.capabilities.user**=*Your Perfectp User*
-**perfecto.capabilities.password**=*Your Perfecto Password*
+**remote.server**=http://<SAUCE_USERNAME>:<SAUCE_ACCESSKEY>@ondemand.saucelabs.com:80/wd/hub
+**sauce.capabilities.user**=*Your Sauce User*
+**sauce.capabilities.password**=*Your Sauce Password*
   
 
 **Step 4 - Verfiy the Feature and Test files**

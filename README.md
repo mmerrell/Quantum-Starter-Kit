@@ -30,15 +30,12 @@ TestNG Plugin is built-in in the IntelliJ IDEA, from version 7 onwards.
  
 #### Optional Installations
 * For source control management, you can install [git](https://git-scm.com/downloads).
-* To be able to interact with a real device from Perfecto cloud directly from your IDE, and use Perfecto Reporting, install [Perfecto CQ Lab Plugin](https://www.perfectomobile.com/ni/resources/downloads/add-ins-plugins-and-extensions) for your IDE.
 
 ## Downloading the Quantum Project
 
 [Download](https://github.com/Project-Quantum/Quantum-Starter-Kit/archive/master.zip) the Quantum-Started-Kit repository.
 
 After downloading and unzipping the project to your computer, open it from your IDE by choosing the folder containing the pom.xml file (_Quantum-Starter-Kit-master_, you might consider renaming it).
-
-Look [here](https://github.com/PerfectoCode/Quantum/wiki/Project%20Layout) to understand the project layout, and find your way in it.
 
 **********************
 # Getting Started
@@ -51,7 +48,6 @@ This procedure leads you through the various Quantum framework's aspects:
 * [Creating your first test](README.md#creating-your-first-test) using the Quantum-Starter-Kit
 * [Parallel execution](README.md#parallel-execution) of all Quantum samples.
 * [Diversifying test execution](README.md#diversifying-test-execution) by manipulating test suites.
-* [Viewing test execution results](README.md#viewing-test-execution-results-in-perfecto-reporting)
 * [Advanced Quantum features](README.md#advanced-quantum-features)
 
 ## Running sample as is
@@ -62,7 +58,7 @@ The samples are located under the _src/main/resources/scenarios_ folder.
 1. Configure your cloud and credentials in the _application.properties_ file (under the top _resources/_ folder).
 2. Run your test via the right-click menu while hovering on the TestNG.xml file in the project pane (on the left).
 
-The sample opens device browser at Google, searches for Perfecto Mobile, enters the site, and searches for Perfecto Object Spy.
+The sample opens device browser at Google, searches for Quantum Leap, enters the site, and searches for the TV show.
 
 ## Creating your first test
 
@@ -81,8 +77,6 @@ The sample opens device browser at Google, searches for Perfecto Mobile, enters 
 * Write your scenario using [Given/When/Then/And](https://github.com/cucumber/cucumber/wiki/Given-When-Then) BDD statements. Use the commands in the pull-down list for accurate steps syntax, and easy step insertion.
 * Write your first scenario for the app's initial starting point, and later create scenarios for other cases; name them differently to enable easy identification in execution report, and name their tags differently if you want to run them separately.
 * Name your app's objects as _functionality.purpose_, for example _button.route_, _edit.start_, etc.
-* If you have a Perfecto plugin - use Perfecto's [Object Spy](https://community.perfectomobile.com/series/18628-object-spy) to obtain smart object locators for your app's objects; if you do not - use other tools, such as Firebug or Chrome's Developer Tools, for that purpose. Put each object locator at the end of the line using that object - it will be used later for creating the Object Repository.<br>When using Object Spy, remember to set your object type to _DOM_ or _Native_ depending on your app's type being Web or Native, respectively. 
-* If you want to run your app's steps using the Object Spy, check the _Execute on Add_ checkbox.
 * Add steps for taking screenshots to allow close examination of test results later on.
 * Add steps for waiting a few seconds upon app's page loading.
 
@@ -105,8 +99,6 @@ To run all samples in parallel, you need to configure the _TestNG.xml_ file, whi
 1. For each of the test suites (enclosed within <test>...</test>), set the _enabled_ property value to **_true_**.
 2. Run your test as before.
 
-This results in running 2 additional samples, both searching terms in Perfecto Community; one uses hard coded search terms, and the other retrieves them from an external input file.
-
 ## Diversifying test execution
 You can set each of the test suites to run on a different type of device, and to include different scenarios. For that, you need to manipulate the contents of the various test suites in the _TestNG.xml_ file.
 Modify **only** the test suites not related to the Google sample we started with.
@@ -114,21 +106,17 @@ Modify **only** the test suites not related to the Google sample we started with
 1. Replace the current tag in the community samples, so that in the _CommunityExample.feature_ sample all tags are **@sampletag**, and in the _CommunityDataDrivenExample.feature_ sample - **@sampletagdd**. <br>You may of course use other values, or leave the tags as is, but use these tag values for demonstration's sake.
 2. In the _TestNG.xml_ file, set the tag parameter value in one suite to **@sampletag**, and in the other - to **@sampletagdd**.<br>That means, that the first test suite runs the CommunityExample sample, and the second - the CommunityDataDrivenExample sample.
 3. To vary the devices used for each of the test suites, replace the capability parameter ("driver.capabilities.someCapability") in both suites with<br>`<parameter name="driver.capabilities.platformName" value="Android"/>`.<br>Set the value to "iOS" in the second test suite.<br>By that, you specify that the CommunityExample sample will run on an Android device (randomly allocated), and the CommunityDataDrivenExample sample - on an iOS device.<br>**Note:** Generally, you can use any of the numerous device selection capabilities.
-4. Run your test in the same manner as before.<br>You can follow your test execution on Perfecto Dashboard and see the three samples running on the specified device types.
+4. Run your test in the same manner as before.<br>You can follow your test execution in the Sauce Dashboard and see the three samples running on the specified device types.
 
-## Viewing test execution results in Perfecto Reporting
+## Viewing test execution results in Sauce Reporting
 
-All the previous executions were recorded, and may be viewed in Perfecto execution center, Reporting.
+All the previous executions were recorded, and may be viewed the Sauce Analytics console.
 
-Let's proceed to naming your tests, so you can easily detect them in Perfecto Reporting and drill down to examine them in more detail.
+Let's proceed to naming your tests, so you can easily detect them in Sauce Analytics and drill down to examine them in more detail.
 
 1. In each of the feature files (the samples), set the Feature line at the top to<br>`Feature: community search sample`
 2. Run your test as before.
-3. To view the test execution report within Perfecto Reporting:
-   * Enter your CQ Lab at https://<your CQ Lab>.perfectomobile.com.
-   * Select the Reporting tab, and click the link to Perfecto Reporting (on the right).
-   * Login using your CQ Lab credentials.<br><br>
-All the last execution tests are listed in the Reporting execution center. The feature name you set in the sample before, appears as the test name on the left. 
+3. Check out the Sauce Analytics console to view the test execution report within Sauce Reporting
 4. To drill down into any of the specific test executions, click the test to view its Single Test Report for more execution details.
 
 
@@ -141,8 +129,6 @@ Quantum has additional features to allow better customization to your specific a
 * Configure the [TestNG.xml](https://github.com/Project-Quantum/Quantum-Starter-Kit/wiki/Quantum%20TestNG%20File) to filter the tests to execute and the devices used in the test.
 
 Configuration of the [application properties](https://github.com/Project-Quantum/Quantum-Starter-Kit/wiki/The%20application.properties%20file) and the [TestNG.xml file](https://github.com/Project-Quantum/Quantum-Starter-Kit/wiki/Quantum%20TestNG%20File), as well as creating object definitions in the [Object Repository](https://github.com/Project-Quantum/Quantum-Starter-Kit/wiki/Object%20Repository) and [creating customized steps](https://github.com/Project-Quantum/Quantum-Starter-Kit/wiki/Creating%20customized%20steps), require knowledge of Java, TestNG, and XPath.
-
-:information_source: The [Perfecto plugin](https://www.perfectomobile.com/ni/resources/downloads/add-ins-plugins-and-extensions) enables access to real devices and desktop Web sessions in the CQ Lab, as well as easy-to-use [Object Spy](https://community.perfectomobile.com/series/18628) for mapping the application objects in the [Object Repository](https://github.com/Project-Quantum/Quantum-Starter-Kit/wiki/Object%20Repository).
 
 **********************
 # Project Directory Structure

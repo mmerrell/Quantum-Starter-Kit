@@ -53,13 +53,13 @@ You also need to change the name tag.
 ![import](image/runG.png?raw=true "rg") 
 
 ###Step 3 Build objects reposotpry 
-* Goto Perfecto IDE open browser on a device and go to : www.kayak.com   
-  * Open the **Object Spy**  
+* Visit the Sauce Live Testing Console, then open a browser on a device and go to : www.kayak.com   
+  * Use the developer tools to inspect the locators  
     * First I want to press on the flights using the following xpath 
       * ```//*[@class='fdTopNavLink flights tap-enabled']```
 
 * Creating the objects repository file:  
-  * goto src/main/resources/common, create a new file **kayak.loc** and add the line:  
+  * Look at src/main/resources/common, create a new file **kayak.loc** and add the line:  
     * ```flights = xpath=[@class='fdTopNavLink flights tap-enabled']```
       * it means we named this button as a flights_bt.  
 
@@ -75,20 +75,3 @@ You also need to change the name tag.
 * Return to the **Kayak.feature** file and finish the flow; use the pre-defined steps and the object names from the repository file.  
   * The Script should looks:  
 ![import](image/script2.png?raw=true "auto")
-
-**Execute again and monitoring the devices in Perfecto dashboard**
-
-
- 
-
-
-
-
-
-
-   
-
-
-
-
-
