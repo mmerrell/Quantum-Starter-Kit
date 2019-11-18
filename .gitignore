@@ -9,6 +9,7 @@ target/
 *.png
 test-output/
 build/
+resources/application.properties
 .DS_Store
 test-order-details/
 test-results/
